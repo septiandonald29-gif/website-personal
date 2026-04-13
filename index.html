@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar Ujian Praktik 8C</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .question-card {
+            border-left: 6px solid #3b82f6;
+        }
+        /* Sticky timer styling */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
+
+    <!-- START SCREEN -->
+    <div id="start-screen" class="min-h-screen flex flex-col items-center justify-center bg-slate-900 text-white p-6">
+        <h1 class="text-5xl font-bold mb-4 text-center">Ujian Praktik Informatika</h1>
+        <h2 class="text-3xl font-light mb-12 text-blue-300">Struktur Data (Stack & Queue)</h2>
+        
+        <div class="bg-slate-800 p-8 rounded-2xl max-w-4xl w-full border border-slate-700 shadow-2xl mb-12">
+            <h3 class="text-2xl font-semibold mb-6 text-yellow-400 border-b border-slate-600 pb-3">Petunjuk Pengerjaan Siswa:</h3>
+            <ol class="list-decimal pl-6 space-y-4 text-lg md:text-xl text-slate-200">
+                <li>Buka aplikasi <strong>Microsoft Word</strong> di komputer masing-masing.</li>
+                <li>Buatlah tabel dengan 5 kolom seperti contoh di bawah.</li>
+                <li>Perhatikan <strong>5 Skenario</strong> yang akan ditampilkan di layar ini.</li>
+                <li>Analisis dan ketikkan jawaban kalian ke dalam tabel di Word.</li>
+                <li>Waktu pengerjaan adalah <strong>15 Menit</strong>. Waktu dimulai saat layar berganti.</li>
+            </ol>
+            
+            <div class="mt-8">
+                <p class="text-sm text-slate-400 mb-2">Contoh Tabel yang harus dibuat di Word:</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm bg-slate-700 rounded-lg overflow-hidden">
+                        <thead class="bg-slate-600 text-slate-200">
+                            <tr>
+                                <th class="p-3 border-r border-slate-500">No</th>
+                                <th class="p-3 border-r border-slate-500">Struktur Data<br><span class="text-xs font-normal">(Stack/Queue)</span></th>
+                                <th class="p-3 border-r border-slate-500">Nama Operasi<br><span class="text-xs font-normal">(Push/Pop/Enqueue/Dequeue)</span></th>
+                                <th class="p-3">Alasan Singkat<br><span class="text-xs font-normal">(Kaitkan dengan LIFO/FIFO & Top/Front/Rear)</span></th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="startExam()" class="bg-blue-600 hover:bg-blue-500 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-lg transition transform hover:scale-105">
+            Mulai Waktu & Tampilkan Soal
+        </button>
+    </div>
+
+    <!-- EXAM SCREEN (QUESTIONS & TIMER) -->
+    <div id="exam-screen" class="hidden min-h-screen bg-slate-50 flex flex-col">
+        
+        <!-- Header & Massive Timer -->
+        <div class="bg-slate-900 text-white p-4 sticky-header flex justify-between items-center px-8" id="timer-bar">
+            <div>
+                <h1 class="text-2xl font-bold text-blue-400">Praktek Informatika 8C</h1>
+                <p class="text-sm text-slate-300">Kerjakan di Microsoft Word</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-xl font-medium tracking-wider uppercase text-slate-300">Sisa Waktu:</span>
+                <div id="timer-display" class="text-6xl font-mono font-bold text-yellow-400 tracking-tight" style="font-variant-numeric: tabular-nums;">
+                    15:00
+                </div>
+            </div>
+        </div>
+
+        <!-- Questions List -->
+        <div class="flex-grow p-8 max-w-6xl mx-auto w-full">
+            <div class="mb-6 bg-blue-100 text-blue-800 px-6 py-3 rounded-lg font-medium text-lg border border-blue-200 flex items-center shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Bacalah skenario berikut dan isikan analisisnya ke dalam tabel Word Anda.
+            </div>
+
+            <div class="space-y-6 pb-12">
+                <!-- Question 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md question-card flex gap-4 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+                    <div>
+                        <p class="text-2xl text-gray-800 leading-relaxed font-medium">
+                            Budi baru saja tiba di bank, lalu mengambil nomor urut 15 dan duduk di kursi paling belakang.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md question-card flex gap-4 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+                    <div>
+                        <p class="text-2xl text-gray-800 leading-relaxed font-medium">
+                            Kamu menekan tombol <strong>Ctrl + Z</strong> di keyboard untuk membatalkan satu kata terakhir yang baru saja diketik.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md question-card flex gap-4 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">3</div>
+                    <div>
+                        <p class="text-2xl text-gray-800 leading-relaxed font-medium">
+                            Kamu menyimpan buku Matematika tepat di atas tumpukan buku IPA dan IPS di dalam kardus.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="bg-white p-6 rounded-xl shadow-md question-card flex gap-4 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">4</div>
+                    <div>
+                        <p class="text-2xl text-gray-800 leading-relaxed font-medium">
+                            Petugas loket bioskop memanggil pemegang nomor urut 1 untuk maju ke meja dan membeli tiket.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="bg-white p-6 rounded-xl shadow-md question-card flex gap-4 items-start">
+                    <div class="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center text-2xl font-bold">5</div>
+                    <div>
+                        <p class="text-2xl text-gray-800 leading-relaxed font-medium">
+                            Mengklik tombol <strong>"Back" (Kembali)</strong> di browser web untuk beranjak dari halaman Wikipedia kembali ke halaman pencarian Google.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIME UP SCREEN -->
+    <div id="timeup-screen" class="hidden fixed inset-0 z-50 bg-red-600 flex flex-col items-center justify-center text-white p-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 mb-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h1 class="text-7xl font-black mb-4 tracking-wider text-center">WAKTU HABIS!</h1>
+        <p class="text-3xl font-semibold mb-8 text-center text-red-100">Silakan simpan (Save) file Word Anda sekarang.</p>
+        <div class="bg-red-800 p-6 rounded-xl text-xl max-w-2xl text-center shadow-2xl border border-red-500">
+            Pastikan nama file sesuai format instruksi guru dan segera kumpulkan.
+            Semua aktivitas mengetik harus dihentikan.
+        </div>
+    </div>
+
+    <script>
+        let timeRemaining = 15 * 60; // 15 minutes in seconds
+        let timerInterval;
+
+        const startScreen = document.getElementById('start-screen');
+        const examScreen = document.getElementById('exam-screen');
+        const timeupScreen = document.getElementById('timeup-screen');
+        const timerDisplay = document.getElementById('timer-display');
+        const timerBar = document.getElementById('timer-bar');
+
+        function startExam() {
+            startScreen.classList.add('hidden');
+            examScreen.classList.remove('hidden');
+            
+            // Enter fullscreen for better presentation (optional, requires user interaction which this button click provides)
+            try {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                }
+            } catch(e) {
+                console.log("Fullscreen not supported or blocked");
+            }
+
+            startTimer();
+        }
+
+        function startTimer() {
+            // Initial display update
+            updateDisplay();
+            
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateDisplay();
+                
+                // Color changes based on time left
+                if (timeRemaining === 300) { // 5 minutes left
+                    timerDisplay.classList.remove('text-yellow-400');
+                    timerDisplay.classList.add('text-orange-400');
+                } else if (timeRemaining === 60) { // 1 minute left
+                    timerBar.classList.remove('bg-slate-900');
+                    timerBar.classList.add('bg-red-900');
+                    timerDisplay.classList.remove('text-orange-400');
+                    timerDisplay.classList.add('text-red-400');
+                    timerDisplay.classList.add('animate-pulse');
+                }
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    showTimeUp();
+                }
+            }, 1000);
+        }
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function showTimeUp() {
+            examScreen.classList.add('hidden');
+            timeupScreen.classList.remove('hidden');
+            
+            // Exit fullscreen automatically if needed, or keep it to show the warning clearly
+        }
+    </script>
+</body>
+</html>
